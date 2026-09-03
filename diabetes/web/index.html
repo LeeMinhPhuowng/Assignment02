@@ -247,6 +247,13 @@
     <strong>Khuyến cáo y khoa:</strong> Kết quả dự đoán được tạo bởi thuật toán học máy từ các chỉ số đo lường lâm sàng nhằm mục đích tham khảo và hỗ trợ sàng lọc sơ bộ. Kết quả này <em>không thay thế</em> chẩn đoán chuyên môn hoặc chỉ định từ bác sĩ chuyên khoa.
    </div>
 
+   
+   <div class="sample-presets" style="margin-bottom: 24px; padding: 14px 16px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+    <span style="font-weight: 600; font-size: 0.88rem; color: #334155;">Thử nhanh dữ liệu mẫu:</span>
+    <button type="button" onclick="loadSample('sick')" style="padding: 7px 14px; background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">Mẫu mắc bệnh (Nguy cơ cao)</button>
+    <button type="button" onclick="loadSample('healthy')" style="padding: 7px 14px; background: #ecfdf5; color: #065f46; border: 1px solid #a7f3d0; border-radius: 8px; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: all 0.2s;">Mẫu không mắc bệnh (Nguy cơ thấp)</button>
+   </div>
+
    <form id="prediction-form">
     <div class="form-group">
      <label>Nồng độ Glucose <span class="unit">mg/dL (sau 2h)</span></label>

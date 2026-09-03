@@ -220,7 +220,7 @@ HUB_HTML = """<!DOCTYPE html>
 <body>
     <div class="container">
         <div class="header">
-            <div class="badge">HỌC VIỆN CÔNG NGHỆ BƯU CHÍNH VIỄN THÔNG — ASSIGNMENT 02</div>
+            <div class="badge">Assignment 02</div>
             <h1>Hệ Thống Trí Tuệ Nhân Tạo Thông Minh</h1>
             <p class="subtitle">Cổng truy cập trải nghiệm trực tuyến 3 ứng dụng Machine Learning độc lập giải quyết bài toán Y tế, Bất động sản và Thương mại điện tử.</p>
         </div>
@@ -267,7 +267,7 @@ HUB_HTML = """<!DOCTYPE html>
         </div>
 
         <div class="footer">
-            Giảng viên hướng dẫn: PGS. TS. Đinh Quê Trần &bull; Sinh viên thực hiện: phuonglm.663 &bull; PTIT 2024–2025
+            Lê Minh Phương - B23DCCN663
         </div>
     </div>
 </body>
@@ -278,7 +278,7 @@ HUB_HTML = """<!DOCTYPE html>
 NAV_BAR_HTML = """
 <div style="width: 100%; max-width: 860px; margin-bottom: 20px; display: flex; justify-content: flex-start; align-items: center;">
     <a href="/" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: #475569; font-weight: 600; font-size: 0.9rem; padding: 8px 16px; background: rgba(255,255,255,0.9); border: 1px solid #cbd5e1; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
-        &larr; Quay lại Cổng Trung Tâm (Hub)
+        &larr; Quay lại Hub
     </a>
 </div>
 """
