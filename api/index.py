@@ -327,6 +327,45 @@ def web_house_price():
 def web_customer_behavior():
     return serve_web_page(BASE_DIR / "customer_behavior" / "web" / "index.html")
 
+# Statistical normalization constants derived from Training Set (StandardScaler parameters)
+HOUSE_NUM_MEANS = np.array([68.45655295, 7.0380846, 3.36314767, 3.42252822, 3.26584791])
+HOUSE_NUM_SCALES = np.array([48.2798653, 5.66900707, 1.25338457, 1.21150747, 1.23880028])
+
+DIAB_MEANS = np.array([121.67100977, 32.44820847, 33.36644951, 3.81921824, 0.47742834])
+DIAB_SCALES = np.array([29.97935076, 6.81856216, 11.8237979, 3.31144822, 0.33003119])
+
+def safe_transform_diabetes(glucose, bmi, age, pregnancies, dpf, prep=None):
+    if prep is not None:
+        try:
+            df = pd.DataFrame([{
+                "Glucose": float(glucose), "BMI": float(bmi), "Age": float(age),
+                "Pregnancies": float(pregnancies), "DiabetesPedigreeFunction": float(dpf)
+            }])
+            return prep.transform(df)
+        except Exception:
+            pass
+    g = 121.67 if float(glucose) <= 0 else float(glucose)
+    b = 32.45 if float(bmi) <= 0 else float(bmi)
+    raw = np.array([g, b, float(age), float(pregnancies), float(dpf)])
+    return np.array([(raw - DIAB_MEANS) / DIAB_SCALES])
+
+def safe_transform_house(area, access_road, floors, bedrooms, bathrooms, furniture_state, prep=None):
+    if prep is not None:
+        try:
+            df = pd.DataFrame([{
+                "Area": float(area), "Access Road": float(access_road), "Floors": float(floors),
+                "Bedrooms": float(bedrooms), "Bathrooms": float(bathrooms),
+                "Furniture state": str(furniture_state).strip()
+            }])
+            return prep.transform(df)
+        except Exception:
+            pass
+    raw_nums = np.array([float(area), float(access_road), float(floors), float(bedrooms), float(bathrooms)])
+    scaled_nums = (raw_nums - HOUSE_NUM_MEANS) / HOUSE_NUM_SCALES
+    is_full = 1.0 if str(furniture_state).strip().lower() == "full" else 0.0
+    is_basic = 1.0 - is_full
+    return np.array([list(scaled_nums) + [is_basic, is_full]])
+
 # Prediction APIs
 @app.route("/diabetes/v1/predict", methods=["POST"])
 def predict_diabetes():
@@ -342,12 +381,7 @@ def predict_diabetes():
         if glucose <= 0 or bmi <= 0 or age <= 0:
             return jsonify({"status": "error", "message": "Chỉ số Glucose, BMI và Tuổi phải lớn hơn 0."}), 400
             
-        df = pd.DataFrame([{
-            "Glucose": glucose, "BMI": bmi, "Age": age,
-            "Pregnancies": pregnancies, "DiabetesPedigreeFunction": dpf
-        }])
-        
-        trans = models["diab_prep"].transform(df)
+        trans = safe_transform_diabetes(glucose, bmi, age, pregnancies, dpf, models.get("diab_prep"))
         pred = int(models["diab_model"].predict(trans)[0])
         
         confidence = 85.0
@@ -381,12 +415,7 @@ def predict_house_price():
         if area <= 0:
             return jsonify({"status": "error", "message": "Diện tích nhà phải lớn hơn 0."}), 400
             
-        df = pd.DataFrame([{
-            "Area": area, "Access Road": access_road, "Floors": floors,
-            "Bedrooms": bedrooms, "Bathrooms": bathrooms, "Furniture state": furniture
-        }])
-        
-        trans = models["house_prep"].transform(df)
+        trans = safe_transform_house(area, access_road, floors, bedrooms, bathrooms, furniture, models.get("house_prep"))
         predicted_price = float(models["house_model"].predict(trans)[0])
         predicted_price = max(0.2, round(predicted_price, 2))
         

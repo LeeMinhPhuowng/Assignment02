@@ -99,13 +99,31 @@ def health():
         models={model_id: config["label"] for model_id, config in MODEL_OPTIONS.items()},
     )
 
+HOUSE_NUM_MEANS = [68.45655295, 7.0380846, 3.36314767, 3.42252822, 3.26584791]
+HOUSE_NUM_SCALES = [48.2798653, 5.66900707, 1.25338457, 1.21150747, 1.23880028]
+
+def safe_transform_house(raw_df, prep=None):
+    if prep is not None:
+        try:
+            return prep.transform(raw_df)
+        except Exception:
+            pass
+    import numpy as np
+    row = raw_df.iloc[0]
+    nums = np.array([float(row['Area']), float(row['Access Road']), float(row['Floors']), float(row['Bedrooms']), float(row['Bathrooms'])])
+    scaled = (nums - np.array(HOUSE_NUM_MEANS)) / np.array(HOUSE_NUM_SCALES)
+    is_full = 1.0 if str(row['Furniture state']).strip().lower() == 'full' else 0.0
+    is_basic = 1.0 - is_full
+    return np.array([list(scaled) + [is_basic, is_full]])
+
 @app.post("/house-price/v1/predict")
 def predict():
     values, model_id, error = validate_payload(request.get_json(silent=True))
     if error:
         return jsonify(error=error), 400
     raw_input = pd.DataFrame([values], columns=FEATURE_COLUMNS)
-    prediction = float(loaded_models[model_id].predict(preprocessor.transform(raw_input))[0])
+    trans = safe_transform_house(raw_input, preprocessor)
+    prediction = float(loaded_models[model_id].predict(trans)[0])
     return jsonify(
         model=model_id,
         model_label=MODEL_OPTIONS[model_id]["label"],
