@@ -235,7 +235,54 @@ HUB_HTML = """<!DOCTYPE html>
             font-size: 0.88rem;
             margin-top: 30px;
         }
+        @media (max-width: 768px) {
+            body {
+                padding: 24px 12px !important;
+            }
+            .container {
+                width: 100% !important;
+            }
+            .header {
+                margin-bottom: 28px !important;
+            }
+            h1 {
+                font-size: 1.7rem !important;
+                line-height: 1.25 !important;
+            }
+            .subtitle {
+                font-size: 0.95rem !important;
+            }
+            .grid {
+                grid-template-columns: 1fr !important;
+                gap: 16px !important;
+            }
+            .card {
+                padding: 22px 18px !important;
+            }
+            .card h2 {
+                font-size: 1.2rem !important;
+            }
+            .card p {
+                font-size: 0.88rem !important;
+                margin-bottom: 18px !important;
+            }
+            .btn {
+                width: 100% !important;
+                padding: 12px !important;
+                font-size: 0.95rem !important;
+            }
+        }
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.45rem !important;
+            }
+            .badge {
+                font-size: 0.75rem !important;
+                padding: 4px 12px !important;
+            }
+        }
     </style>
+
 </head>
 <body>
     <div class="container">
@@ -296,8 +343,8 @@ HUB_HTML = """<!DOCTYPE html>
 
 # Navigation Bar without report link
 NAV_BAR_HTML = """
-<div style="width: 100%; max-width: 860px; margin-bottom: 20px; display: flex; justify-content: flex-start; align-items: center;">
-    <a href="/" style="display: inline-flex; align-items: center; gap: 8px; text-decoration: none; color: #475569; font-weight: 600; font-size: 0.9rem; padding: 8px 16px; background: rgba(255,255,255,0.9); border: 1px solid #cbd5e1; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.04);">
+<div style="width: 100%; max-width: 860px; margin-bottom: 16px; display: flex; justify-content: flex-start; align-items: center; box-sizing: border-box; padding: 0 4px;">
+    <a href="/" style="display: inline-flex; align-items: center; gap: 6px; text-decoration: none; color: #334155; font-weight: 600; font-size: 0.88rem; padding: 8px 14px; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); transition: all 0.2s ease;">
         &larr; Quay lại Hub
     </a>
 </div>
