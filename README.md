@@ -3,7 +3,7 @@
 Dự án này hiện thực hóa toàn diện quy trình phát triển và triển khai ba hệ thống học máy (Machine Learning) thông minh độc lập, giải quyết ba bài toán thực tế thuộc các lĩnh vực: **Y tế (Healthcare)**, **Bất động sản (Real Estate)** và **Thương mại điện tử (E-Commerce)**.
 
 Mỗi ứng dụng tuân thủ nghiêm ngặt chu trình kỹ thuật chuẩn từ dữ liệu thô đến dịch vụ hoàn chỉnh:
-$$\text{Raw Data} \longrightarrow \text{Clean} \longrightarrow \text{Represent} \longrightarrow \text{Learn} \longrightarrow \text{Evaluate} \longrightarrow \text{Persist} \longrightarrow \text{Deploy (Web API \& Mobile)}$$
+$$\text{Raw Data} \longrightarrow \text{Clean} \longrightarrow \text{Represent} \longrightarrow \text{Learn} \longrightarrow \text{Evaluate} \longrightarrow \text{Persist} \longrightarrow \text{Deploy (Web API and Mobile)}$$
 
 ---
 
@@ -302,7 +302,7 @@ python REST_API.py
 
 Mỗi ứng dụng đi kèm một ứng dụng di động Flutter độc lập trong thư mục `mobile/`, giao tiếp với REST API theo mô hình Client - Server:
 
-$$\text{Mobile UI} \longrightarrow \text{HTTP POST} \longrightarrow \text{Flask REST API} \longrightarrow \text{Pipeline \& Model} \longrightarrow \text{JSON Response} \longrightarrow \text{Mobile UI}$$
+$$\text{Mobile UI} \longrightarrow \text{HTTP POST} \longrightarrow \text{Flask REST API} \longrightarrow \text{Pipeline and Model} \longrightarrow \text{JSON Response} \longrightarrow \text{Mobile UI}$$
 
 ### Các bước khởi chạy:
 ```powershell
@@ -326,7 +326,46 @@ flutter run
 
 ---
 
-## 9. Khuyến cáo & Phạm vi ứng dụng
+## 9. Hướng dẫn Triển khai lên Vercel (Vercel Deployment)
+
+Sau khi mã nguồn đã được đẩy lên GitHub, bạn có 2 cách cực kỳ nhanh chóng để triển khai trang **Báo cáo nghiên cứu trực tuyến** (kèm đầy đủ 25 biểu đồ phân tích và công thức toán học MathJax) lên nền tảng **Vercel** hoàn toàn miễn phí:
+
+### Cách 1: Sử dụng Vercel CLI (Nhanh nhất từ Terminal)
+
+Sau khi đã `git push` lên GitHub, bạn mở terminal ngay tại thư mục dự án và chạy các lệnh sau:
+
+```powershell
+# 1. Đăng nhập và triển khai tự động (Lần đầu chạy sẽ mở trình duyệt để xác thực):
+npx vercel
+
+# 2. Khi terminal hỏi các thông số, bạn chỉ cần nhấn Enter để chọn cấu hình mặc định:
+#    - Set up and deploy? [Y/n]  --> gõ Y rồi Enter
+#    - Which scope?              --> nhấn Enter
+#    - Link to existing project? --> nhấn Enter (N)
+#    - Project's name?           --> nhập tên dự án (ví dụ: a2-intelligent-systems) rồi Enter
+#    - Directory located?        --> nhấn Enter (./)
+
+# 3. Triển khai bản chính thức (Production URL):
+npx vercel --prod
+```
+
+Hệ thống sẽ cung cấp đường dẫn web trực tuyến dạng: `https://a2-intelligent-systems.vercel.app`.
+
+### Cách 2: Triển khai trực tiếp từ Giao diện Vercel Dashboard
+
+1. Truy cập vào trang quản trị: **[https://vercel.com/new](https://vercel.com/new)**
+2. Đăng nhập bằng tài khoản **GitHub**.
+3. Tại danh sách **Import Git Repository**, tìm kiếm kho chứa dự án của bạn (ví dụ: `A2_CT_phuonglm.663`) và nhấn nút **Import**.
+4. Tại phần cấu hình dự án (**Configure Project**):
+   - **Framework Preset:** Giữ nguyên `Other`.
+   - **Root Directory:** Giữ nguyên `./`.
+   - Không cần thiết lập Build Command hay Output Directory (Vercel sẽ tự động phục vụ tệp `index.html` và thư mục `report_images/`).
+5. Nhấn nút **Deploy**.
+6. Sau khoảng 15 - 30 giây, Vercel sẽ thông báo triển khai thành công và cấp tên miền công khai dạng `https://<tên-repo>.vercel.app`.
+
+---
+
+## 10. Khuyến cáo & Phạm vi ứng dụng
 
 - Các kết quả dự đoán được sinh ra từ các mô hình học máy được huấn luyện trên dữ liệu lịch sử mang tính chất tham khảo, học thuật và hỗ trợ ra quyết định.
 - Kết quả sàng lọc nguy cơ đái tháo đường **không thay thế kết luận chẩn đoán hoặc chỉ định lâm sàng của y bác sĩ**.
