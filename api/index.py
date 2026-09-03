@@ -37,26 +37,46 @@ __main__.convert_invalid_zero_to_nan = convert_invalid_zero_to_nan
 # Cache for loaded models
 MODELS = {}
 
+def fix_imputers(obj):
+    if obj is None:
+        return
+    if "SimpleImputer" in type(obj).__name__:
+        if not hasattr(obj, "_fill_dtype"):
+            obj._fill_dtype = np.dtype("float64")
+    if hasattr(obj, "named_steps"):
+        for step in obj.named_steps.values():
+            fix_imputers(step)
+    if hasattr(obj, "transformers"):
+        for item in obj.transformers:
+            if len(item) >= 2:
+                fix_imputers(item[1])
+    if hasattr(obj, "transformers_"):
+        for item in obj.transformers_:
+            if len(item) >= 2:
+                fix_imputers(item[1])
+    if hasattr(obj, "named_transformers_"):
+        for trans in obj.named_transformers_.values():
+            fix_imputers(trans)
+
 def get_models():
     if not MODELS:
         print("Loading models into memory...")
         # 1. Diabetes
-        prep = joblib.load(BASE_DIR / "diabetes" / "model" / "preprocessor.sav")
-        if hasattr(prep, "named_steps") and "imputer" in prep.named_steps:
-            imp = prep.named_steps["imputer"]
-            if not hasattr(imp, "_fill_dtype"):
-                imp._fill_dtype = np.dtype("float64")
-        MODELS["diab_prep"] = prep
+        diab_prep = joblib.load(BASE_DIR / "diabetes" / "model" / "preprocessor.sav")
+        fix_imputers(diab_prep)
+        MODELS["diab_prep"] = diab_prep
         MODELS["diab_model"] = joblib.load(BASE_DIR / "diabetes" / "model" / "decision_tree.sav")
         
         # 2. House Price
-        MODELS["house_prep"] = joblib.load(BASE_DIR / "house_price" / "model" / "preprocessor.sav")
+        house_prep = joblib.load(BASE_DIR / "house_price" / "model" / "preprocessor.sav")
+        fix_imputers(house_prep)
+        MODELS["house_prep"] = house_prep
         MODELS["house_model"] = joblib.load(BASE_DIR / "house_price" / "model" / "random_forest_regressor.sav")
         
         # 3. Customer Behavior
         MODELS["ecom_vec"] = joblib.load(BASE_DIR / "customer_behavior" / "model" / "tfidf_vectorizer.sav")
         MODELS["ecom_model"] = joblib.load(BASE_DIR / "customer_behavior" / "model" / "logistic_regression.sav")
-        print("All 3 models loaded successfully!")
+        print("All 3 models loaded and patched successfully!")
     return MODELS
 
 def clean_nlp_text(text):

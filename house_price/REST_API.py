@@ -22,8 +22,32 @@ MODEL_OPTIONS = {
     "gradient_boosting_regressor": {"label": "Gradient Boosting Regressor", "filename": "gradient_boosting_regressor.sav"},
 }
 
+def fix_imputers(obj):
+    import numpy as np
+    if obj is None:
+        return
+    if "SimpleImputer" in type(obj).__name__:
+        if not hasattr(obj, "_fill_dtype"):
+            obj._fill_dtype = np.dtype("float64")
+    if hasattr(obj, "named_steps"):
+        for step in obj.named_steps.values():
+            fix_imputers(step)
+    if hasattr(obj, "transformers"):
+        for item in obj.transformers:
+            if len(item) >= 2:
+                fix_imputers(item[1])
+    if hasattr(obj, "transformers_"):
+        for item in obj.transformers_:
+            if len(item) >= 2:
+                fix_imputers(item[1])
+    if hasattr(obj, "named_transformers_"):
+        for trans in obj.named_transformers_.values():
+            fix_imputers(trans)
+
 def load_pickle(path):
-    return joblib.load(path)
+    obj = joblib.load(path)
+    fix_imputers(obj)
+    return obj
 
 def load_models():
     files = ["preprocessor.sav"] + [config["filename"] for config in MODEL_OPTIONS.values()]
