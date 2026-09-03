@@ -235,36 +235,47 @@ HUB_HTML = """<!DOCTYPE html>
             font-size: 0.88rem;
             margin-top: 30px;
         }
-        @media (max-width: 768px) {
+        
+        * {
+            box-sizing: border-box !important;
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100% !important;
+            max-width: 100vw !important;
+            overflow-x: hidden !important;
+        }
+        @media (max-width: 860px) {
             body {
-                padding: 24px 12px !important;
+                padding: 20px 10px !important;
             }
             .container {
                 width: 100% !important;
             }
             .header {
-                margin-bottom: 28px !important;
+                margin-bottom: 24px !important;
             }
             h1 {
-                font-size: 1.7rem !important;
+                font-size: 1.65rem !important;
                 line-height: 1.25 !important;
             }
             .subtitle {
-                font-size: 0.95rem !important;
+                font-size: 0.92rem !important;
             }
             .grid {
                 grid-template-columns: 1fr !important;
                 gap: 16px !important;
             }
             .card {
-                padding: 22px 18px !important;
+                padding: 20px 16px !important;
             }
             .card h2 {
                 font-size: 1.2rem !important;
             }
             .card p {
                 font-size: 0.88rem !important;
-                margin-bottom: 18px !important;
+                margin-bottom: 16px !important;
             }
             .btn {
                 width: 100% !important;
@@ -274,14 +285,15 @@ HUB_HTML = """<!DOCTYPE html>
         }
         @media (max-width: 480px) {
             h1 {
-                font-size: 1.45rem !important;
+                font-size: 1.4rem !important;
             }
             .badge {
                 font-size: 0.75rem !important;
-                padding: 4px 12px !important;
+                padding: 4px 10px !important;
             }
         }
     </style>
+
 
 </head>
 <body>
