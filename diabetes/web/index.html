@@ -299,6 +299,27 @@
   </div>
 
   <script>
+
+    function loadSample(type) {
+      const f = document.querySelector("#prediction-form");
+      if (!f) return;
+      if (type === 'sick') {
+        f.Glucose.value = 168;
+        f.BMI.value = 38.5;
+        f.Age.value = 48;
+        f.Pregnancies.value = 5;
+        f.DiabetesPedigreeFunction.value = 0.85;
+      } else {
+        f.Glucose.value = 88;
+        f.BMI.value = 22.4;
+        f.Age.value = 25;
+        f.Pregnancies.value = 1;
+        f.DiabetesPedigreeFunction.value = 0.25;
+      }
+      f.Glucose.focus();
+    }
+    window.loadSample = loadSample;
+
    const form = document.querySelector("#prediction-form");
    const result = document.querySelector("#result");
    const submitBtn = form.querySelector("button[type='submit']");

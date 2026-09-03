@@ -292,6 +292,36 @@
   </div>
 
   <script>
+
+    function loadHouseSample(type) {
+      const f = document.querySelector("#prediction-form");
+      if (!f) return;
+      if (type === 'townhouse') {
+        f["Area"].value = 75;
+        f["Access Road"].value = 4.5;
+        f["Floors"].value = 4;
+        f["Bedrooms"].value = 3;
+        f["Bathrooms"].value = 3;
+        f["Furniture state"].value = "Full";
+      } else if (type === 'villa') {
+        f["Area"].value = 180;
+        f["Access Road"].value = 8.0;
+        f["Floors"].value = 3;
+        f["Bedrooms"].value = 5;
+        f["Bathrooms"].value = 5;
+        f["Furniture state"].value = "Full";
+      } else if (type === 'alley') {
+        f["Area"].value = 38;
+        f["Access Road"].value = 2.0;
+        f["Floors"].value = 2;
+        f["Bedrooms"].value = 2;
+        f["Bathrooms"].value = 1;
+        f["Furniture state"].value = "Basic";
+      }
+      f["Area"].focus();
+    }
+    window.loadHouseSample = loadHouseSample;
+
    const form = document.querySelector("#prediction-form");
    const result = document.querySelector("#result");
    const submitBtn = form.querySelector("button[type='submit']");
