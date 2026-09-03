@@ -64,7 +64,13 @@ import sys
 sys.modules['__main__'].convert_invalid_zero_to_nan = convert_invalid_zero_to_nan
 
 def load_pickle(path):
-    return joblib.load(path)
+    obj = joblib.load(path)
+    # Safeguard for sklearn version incompatibility with SimpleImputer
+    if hasattr(obj, "named_steps") and "imputer" in obj.named_steps:
+        imp = obj.named_steps["imputer"]
+        if not hasattr(imp, "_fill_dtype"):
+            imp._fill_dtype = np.dtype("float64")
+    return obj
 
 
 def load_models():
