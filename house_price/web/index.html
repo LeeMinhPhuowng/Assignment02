@@ -365,9 +365,9 @@
      result.innerHTML = `
       <div class="result-tag">KẾT QUẢ ĐỊNH GIÁ THỊ TRƯỜNG ƯỚC TÍNH</div>
       <div class="price-highlight">
-       ${data.predicted_price_display || (Number(data.predicted_price).toFixed(2) + ' tỷ VNĐ')}
+       ${data.predicted_price_display || data.formatted_price || (Number(data.predicted_price || data.predicted_price_billion || 0).toFixed(2) + ' tỷ VNĐ')}
       </div>
-      <p style="color: #64748b; font-size: 0.9rem;">${escapeHtml(data.message)}</p>
+      <p style="color: #64748b; font-size: 0.9rem;">${escapeHtml(data.message || data.disclaimer || "")}</p>
       <div class="specs-badge-group">
        <span class="spec-pill"> ${payload.Area} m²</span>
        <span class="spec-pill"> Đường vào: ${payload["Access Road"]} m</span>

@@ -421,7 +421,10 @@ def predict_house_price():
         
         return jsonify({
             "status": "success",
-            "predicted_price_billion": predicted_price,
+            "predicted_price": round(predicted_price, 2),
+            "predicted_price_display": f"{predicted_price:,.2f} tỷ VNĐ",
+            "message": "Giá dự đoán chỉ mang tính tham khảo, dựa trên mô hình học máy.",
+            "predicted_price_billion": round(predicted_price, 2),
             "formatted_price": f"{predicted_price:,.2f} tỷ VNĐ",
             "unit_price_million_per_m2": round((predicted_price * 1000) / area, 2),
             "model": "random_forest_regressor",
