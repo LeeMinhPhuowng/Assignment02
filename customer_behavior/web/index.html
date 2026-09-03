@@ -1,353 +1,353 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hệ Thống Phân Tích Phản Hồi & Khuyến Nghị Khách Hàng AI - ReviewPulse</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --primary: #4f46e5;
-        --primary-hover: #4338ca;
-        --secondary: #8b5cf6;
-        --bg: #f8fafc;
-        --card-bg: #ffffff;
-        --text-main: #0f172a;
-        --text-muted: #64748b;
-        --border: #e2e8f0;
-        --success: #10b981;
-        --danger: #ef4444;
-        --radius: 16px;
-      }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        font-family: 'Inter', system-ui, sans-serif;
-        background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, rgba(248, 250, 252, 1) 90%);
-        color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 16px;
-      }
-      .container {
-        width: 100%;
-        max-width: 860px;
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.15), 0 0 0 1px rgba(226, 232, 240, 0.8);
-        padding: 40px;
-      }
-      .header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 24px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-      }
-      .brand-icon {
-        width: 52px;
-        height: 52px;
-        background: linear-gradient(135deg, #4f46e5, #8b5cf6);
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        color: white;
-        font-size: 24px;
-        box-shadow: 0 8px 16px -4px rgba(79, 70, 229, 0.4);
-      }
-      .header h1 {
-        font-size: 1.65rem;
-        font-weight: 800;
-        color: #0f172a;
-        letter-spacing: -0.02em;
-      }
-      .header p {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        margin-top: 4px;
-      }
-      .sample-presets {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      .sample-presets span {
-        font-size: 0.85rem;
-        font-weight: 600;
-        color: var(--text-muted);
-      }
-      .preset-btn {
-        background: #f1f5f9;
-        border: 1px solid #cbd5e1;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-size: 0.82rem;
-        font-weight: 600;
-        color: #334155;
-        cursor: pointer;
-        transition: all 0.2s ease;
-      }
-      .preset-btn:hover {
-        background: #e2e8f0;
-        color: #0f172a;
-      }
-      form {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      label {
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: #1e293b;
-        display: flex;
-        justify-content: space-between;
-      }
-      label span.hint {
-        font-weight: 400;
-        color: #94a3b8;
-        font-size: 0.82rem;
-      }
-      input, textarea, select {
-        padding: 12px 16px;
-        border: 1.5px solid var(--border);
-        border-radius: 10px;
-        font-family: inherit;
-        font-size: 0.95rem;
-        background: #ffffff;
-        transition: all 0.2s ease;
-      }
-      textarea {
-        min-height: 140px;
-        resize: vertical;
-        line-height: 1.5;
-      }
-      input:focus, textarea:focus, select:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
-      }
-      .btn-submit {
-        padding: 14px;
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #4f46e5, #6366f1);
-        color: #ffffff;
-        font-size: 1.05rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
-      }
-      .btn-submit:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 24px -5px rgba(79, 70, 229, 0.5);
-      }
-      .btn-submit:active { transform: translateY(0); }
-      .btn-submit:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-        transform: none;
-      }
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hệ Thống Phân Tích Phản Hồi & Khuyến Nghị Khách Hàng AI - ReviewPulse</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+   :root {
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary: #8b5cf6;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --success: #10b981;
+    --danger: #ef4444;
+    --radius: 16px;
+   }
+   * { box-sizing: border-box; margin: 0; padding: 0; }
+   body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: radial-gradient(circle at 10% 20%, rgba(79, 70, 229, 0.08) 0%, rgba(248, 250, 252, 1) 90%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px;
+   }
+   .container {
+    width: 100%;
+    max-width: 860px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 20px 40px -15px rgba(79, 70, 229, 0.15), 0 0 0 1px rgba(226, 232, 240, 0.8);
+    padding: 40px;
+   }
+   .header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+   }
+   .brand-icon {
+    width: 52px;
+    height: 52px;
+    background: linear-gradient(135deg, #4f46e5, #8b5cf6);
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 24px;
+    box-shadow: 0 8px 16px -4px rgba(79, 70, 229, 0.4);
+   }
+   .header h1 {
+    font-size: 1.65rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+   }
+   .header p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+   }
+   .sample-presets {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    align-items: center;
+   }
+   .sample-presets span {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-muted);
+   }
+   .preset-btn {
+    background: #f1f5f9;
+    border: 1px solid #cbd5e1;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+   }
+   .preset-btn:hover {
+    background: #e2e8f0;
+    color: #0f172a;
+   }
+   form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+   }
+   .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+   }
+   label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    justify-content: space-between;
+   }
+   label span.hint {
+    font-weight: 400;
+    color: #94a3b8;
+    font-size: 0.82rem;
+   }
+   input, textarea, select {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: #ffffff;
+    transition: all 0.2s ease;
+   }
+   textarea {
+    min-height: 140px;
+    resize: vertical;
+    line-height: 1.5;
+   }
+   input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+   }
+   .btn-submit {
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 20px -5px rgba(79, 70, 229, 0.4);
+   }
+   .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px -5px rgba(79, 70, 229, 0.5);
+   }
+   .btn-submit:active { transform: translateY(0); }
+   .btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+   }
 
-      /* Result card */
-      #result {
-        display: none;
-        margin-top: 30px;
-        padding: 26px;
-        border-radius: 14px;
-        animation: fadeIn 0.4s ease;
-      }
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(12px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      #result.positive {
-        background: #ecfdf5;
-        border: 1.5px solid #a7f3d0;
-        color: #065f46;
-      }
-      #result.negative {
-        background: #fef2f2;
-        border: 1.5px solid #fecaca;
-        color: #991b1b;
-      }
-      #result.error {
-        background: #fffbeb;
-        border: 1.5px solid #fde68a;
-        color: #92400e;
-      }
-      .result-title {
-        font-size: 1.4rem;
-        font-weight: 800;
-        margin-bottom: 6px;
-      }
-      .confidence-meter-container {
-        margin: 16px 0;
-        background: rgba(0,0,0,0.06);
-        border-radius: 9999px;
-        height: 12px;
-        overflow: hidden;
-      }
-      .confidence-fill {
-        height: 100%;
-        background: #10b981;
-        transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-      }
-      .confidence-fill.negative {
-        background: #ef4444;
-      }
-      .model-tag {
-        display: inline-block;
-        font-size: 0.82rem;
-        font-weight: 600;
-        padding: 4px 10px;
-        border-radius: 6px;
-        background: rgba(255,255,255,0.8);
-        border: 1px solid rgba(0,0,0,0.1);
-        margin-top: 8px;
-      }
+   /* Result card */
+   #result {
+    display: none;
+    margin-top: 30px;
+    padding: 26px;
+    border-radius: 14px;
+    animation: fadeIn 0.4s ease;
+   }
+   @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+   }
+   #result.positive {
+    background: #ecfdf5;
+    border: 1.5px solid #a7f3d0;
+    color: #065f46;
+   }
+   #result.negative {
+    background: #fef2f2;
+    border: 1.5px solid #fecaca;
+    color: #991b1b;
+   }
+   #result.error {
+    background: #fffbeb;
+    border: 1.5px solid #fde68a;
+    color: #92400e;
+   }
+   .result-title {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+   }
+   .confidence-meter-container {
+    margin: 16px 0;
+    background: rgba(0,0,0,0.06);
+    border-radius: 9999px;
+    height: 12px;
+    overflow: hidden;
+   }
+   .confidence-fill {
+    height: 100%;
+    background: #10b981;
+    transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+   }
+   .confidence-fill.negative {
+    background: #ef4444;
+   }
+   .model-tag {
+    display: inline-block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.8);
+    border: 1px solid rgba(0,0,0,0.1);
+    margin-top: 8px;
+   }
 
-      @media (max-width: 680px) {
-        body { padding: 12px; }
-        .container { padding: 24px 18px; border-radius: 12px; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <div class="brand-icon">💬</div>
-        <div>
-          <h1>ReviewPulse - Phân Tích Đánh Giá & Khuyến Nghị Khách Hàng</h1>
-          <p>Mô hình xử lý ngôn ngữ tự nhiên (NLP) phân loại thái độ và dự báo hành vi giới thiệu sản phẩm</p>
-        </div>
-      </div>
+   @media (max-width: 680px) {
+    body { padding: 12px; }
+    .container { padding: 24px 18px; border-radius: 12px; }
+   }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <div class="brand-icon"></div>
+    <div>
+     <h1>ReviewPulse - Phân Tích Đánh Giá & Khuyến Nghị Khách Hàng</h1>
+     <p>Mô hình xử lý ngôn ngữ tự nhiên (NLP) phân loại thái độ và dự báo hành vi giới thiệu sản phẩm</p>
+    </div>
+   </div>
 
-      <div class="sample-presets">
-        <span>⚡ Thử nhanh mẫu đánh giá:</span>
-        <button type="button" class="preset-btn" onclick="fillSample(true)">👍 Mẫu Khen Ngợi (Tích cực)</button>
-        <button type="button" class="preset-btn" onclick="fillSample(false)">👎 Mẫu Phàn Nàn (Tiêu cực)</button>
-      </div>
+   <div class="sample-presets">
+    <span> Thử nhanh mẫu đánh giá:</span>
+    <button type="button" class="preset-btn" onclick="fillSample(true)"> Mẫu Khen Ngợi (Tích cực)</button>
+    <button type="button" class="preset-btn" onclick="fillSample(false)"> Mẫu Phàn Nàn (Tiêu cực)</button>
+   </div>
 
-      <form id="prediction-form">
-        <div class="form-group">
-          <label>Tiêu đề bài đánh giá (Title) <span class="hint">Không bắt buộc</span></label>
-          <input name="Title" type="text" placeholder="Ví dụ: Absolutely loved the quality and fit">
-        </div>
-
-        <div class="form-group">
-          <label>Nội dung nhận xét chi tiết (Review Text) <span class="hint">Bắt buộc (Tiếng Anh)</span></label>
-          <textarea name="Review Text" required placeholder="Nhập cảm nhận của khách hàng về chất vải, độ vừa vặn, màu sắc..."></textarea>
-        </div>
-
-        <div class="form-group">
-          <label>Thuật toán phân loại NLP <span class="hint">Machine Learning Model</span></label>
-          <select name="model">
-            <option value="logistic_regression">Logistic Regression (Balanced - Khuyến nghị)</option>
-            <option value="multinomial_naive_bayes">Multinomial Naive Bayes</option>
-            <option value="linear_svm">Linear Support Vector Machine (Linear SVM)</option>
-            <option value="sgd_classifier">SGD Classifier (Balanced Log Loss)</option>
-            <option value="random_forest">Random Forest Classifier</option>
-            <option value="decision_tree">Decision Tree Classifier</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn-submit">Phân Tích Cảm Xúc & Dự Báo Hành Vi</button>
-      </form>
-
-      <section id="result" aria-live="polite"></section>
+   <form id="prediction-form">
+    <div class="form-group">
+     <label>Tiêu đề bài đánh giá (Title) <span class="hint">Không bắt buộc</span></label>
+     <input name="Title" type="text" placeholder="Ví dụ: Absolutely loved the quality and fit">
     </div>
 
-    <script>
-      const form = document.querySelector("#prediction-form");
-      const result = document.querySelector("#result");
-      const submitBtn = form.querySelector("button[type='submit']");
+    <div class="form-group">
+     <label>Nội dung nhận xét chi tiết (Review Text) <span class="hint">Bắt buộc (Tiếng Anh)</span></label>
+     <textarea name="Review Text" required placeholder="Nhập cảm nhận của khách hàng về chất vải, độ vừa vặn, màu sắc..."></textarea>
+    </div>
 
-      function fillSample(isPositive) {
-        if (isPositive) {
-          form.Title.value = "Stunning dress, flattering fit!";
-          form["Review Text"].value = "The fabric is wonderfully soft and high quality. It fits true to size and accentuates the waist perfectly. Received many compliments, highly recommended!";
-        } else {
-          form.Title.value = "Disappointed, poor quality material";
-          form["Review Text"].value = "The dress was completely huge and unflattering. The material felt very cheap and itchy. Returning this immediately, definitely not worth the price.";
-        }
-      }
+    <div class="form-group">
+     <label>Thuật toán phân loại NLP <span class="hint">Machine Learning Model</span></label>
+     <select name="model">
+      <option value="logistic_regression">Logistic Regression (Balanced - Khuyến nghị)</option>
+      <option value="multinomial_naive_bayes">Multinomial Naive Bayes</option>
+      <option value="linear_svm">Linear Support Vector Machine (Linear SVM)</option>
+      <option value="sgd_classifier">SGD Classifier (Balanced Log Loss)</option>
+      <option value="random_forest">Random Forest Classifier</option>
+      <option value="decision_tree">Decision Tree Classifier</option>
+     </select>
+    </div>
 
-      const escapeHtml = (val) => String(val ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    <button type="submit" class="btn-submit">Phân Tích Cảm Xúc & Dự Báo Hành Vi</button>
+   </form>
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Đang chạy mô hình NLP...";
+   <section id="result" aria-live="polite"></section>
+  </div>
 
-        const payload = {
-          Title: form.Title.value,
-          "Review Text": form["Review Text"].value,
-          model: form.model.value
-        };
+  <script>
+   const form = document.querySelector("#prediction-form");
+   const result = document.querySelector("#result");
+   const submitBtn = form.querySelector("button[type='submit']");
 
-        try {
-          const res = await fetch("/recommendation/v1/predict", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
+   function fillSample(isPositive) {
+    if (isPositive) {
+     form.Title.value = "Stunning dress, flattering fit!";
+     form["Review Text"].value = "The fabric is wonderfully soft and high quality. It fits true to size and accentuates the waist perfectly. Received many compliments, highly recommended!";
+    } else {
+     form.Title.value = "Disappointed, poor quality material";
+     form["Review Text"].value = "The dress was completely huge and unflattering. The material felt very cheap and itchy. Returning this immediately, definitely not worth the price.";
+    }
+   }
 
-          const data = await res.json();
-          result.style.display = "block";
+   const escapeHtml = (val) => String(val ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
 
-          if (!res.ok) {
-            result.className = "error";
-            result.innerHTML = `
-              <div class="result-title">Có lỗi xử lý</div>
-              <p>${escapeHtml(data.message || "Không thể phân loại review.")}</p>
-            `;
-            return;
-          }
+   form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Đang chạy mô hình NLP...";
 
-          const isRec = data.prediction_class === 1;
-          result.className = isRec ? "positive" : "negative";
+    const payload = {
+     Title: form.Title.value,
+     "Review Text": form["Review Text"].value,
+     model: form.model.value
+    };
 
-          const prob = Number(data.recommendation_probability || 0);
+    try {
+     const res = await fetch("/recommendation/v1/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+     });
 
-          result.innerHTML = `
-            <div class="result-title">${isRec ? '🎉 KHÁCH HÀNG SẼ KHUYẾN NGHỊ SẢN PHẨM' : '⚠️ NGUY CƠ KHÁCH HÀNG KHÔNG KHUYẾN NGHỊ / TRẢ HÀNG'}</div>
-            <p style="font-size:0.95rem; margin-top:4px;">${escapeHtml(data.recommendation)}</p>
-            
-            <div style="margin-top:14px; font-size:0.88rem; font-weight:600;">
-              Xác suất khuyến nghị: <strong>${prob.toFixed(1)}%</strong>
-            </div>
-            <div class="confidence-meter-container">
-              <div class="confidence-fill ${isRec ? '' : 'negative'}" style="width: ${prob}%"></div>
-            </div>
+     const data = await res.json();
+     result.style.display = "block";
 
-            <span class="model-tag">⚙ Mô hình sử dụng: ${escapeHtml(data.model_label || data.model)}</span>
-          `;
-          result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } catch (err) {
-          result.style.display = "block";
-          result.className = "error";
-          result.innerHTML = `
-            <div class="result-title">Lỗi kết nối máy chủ</div>
-            <p>Không thể kết nối đến REST API Customer Behavior. Vui lòng kiểm tra server Flask.</p>
-          `;
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Phân Tích Cảm Xúc & Dự Báo Hành Vi";
-        }
-      });
-    </script>
-  </body>
+     if (!res.ok) {
+      result.className = "error";
+      result.innerHTML = `
+       <div class="result-title">Có lỗi xử lý</div>
+       <p>${escapeHtml(data.message || "Không thể phân loại review.")}</p>
+      `;
+      return;
+     }
+
+     const isRec = data.prediction_class === 1;
+     result.className = isRec ? "positive" : "negative";
+
+     const prob = Number(data.recommendation_probability || 0);
+
+     result.innerHTML = `
+      <div class="result-title">${isRec ? ' KHÁCH HÀNG SẼ KHUYẾN NGHỊ SẢN PHẨM' : ' NGUY CƠ KHÁCH HÀNG KHÔNG KHUYẾN NGHỊ / TRẢ HÀNG'}</div>
+      <p style="font-size:0.95rem; margin-top:4px;">${escapeHtml(data.recommendation)}</p>
+      
+      <div style="margin-top:14px; font-size:0.88rem; font-weight:600;">
+       Xác suất khuyến nghị: <strong>${prob.toFixed(1)}%</strong>
+      </div>
+      <div class="confidence-meter-container">
+       <div class="confidence-fill ${isRec ? '' : 'negative'}" style="width: ${prob}%"></div>
+      </div>
+
+      <span class="model-tag"> Mô hình sử dụng: ${escapeHtml(data.model_label || data.model)}</span>
+     `;
+     result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (err) {
+     result.style.display = "block";
+     result.className = "error";
+     result.innerHTML = `
+      <div class="result-title">Lỗi kết nối máy chủ</div>
+      <p>Không thể kết nối đến REST API Customer Behavior. Vui lòng kiểm tra server Flask.</p>
+     `;
+    } finally {
+     submitBtn.disabled = false;
+     submitBtn.textContent = "Phân Tích Cảm Xúc & Dự Báo Hành Vi";
+    }
+   });
+  </script>
+ </body>
 </html>

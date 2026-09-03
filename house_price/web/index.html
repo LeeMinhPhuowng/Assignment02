@@ -1,358 +1,358 @@
 <!doctype html>
 <html lang="vi">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Hệ Thống Thẩm Định Giá Bất Động Sản AI - EstateValuate</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --primary: #1e293b;
-        --accent: #d97706;
-        --accent-hover: #b45309;
-        --bg: #f8fafc;
-        --card-bg: #ffffff;
-        --text-main: #0f172a;
-        --text-muted: #64748b;
-        --border: #e2e8f0;
-        --radius: 16px;
-      }
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      body {
-        font-family: 'Outfit', system-ui, sans-serif;
-        background: linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
-        color: var(--text-main);
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 40px 16px;
-      }
-      .container {
-        width: 100%;
-        max-width: 860px;
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
-        padding: 40px;
-        position: relative;
-        overflow: hidden;
-      }
-      .container::before {
-        content: '';
-        position: absolute;
-        top: 0; left: 0; right: 0;
-        height: 6px;
-        background: linear-gradient(90deg, #d97706, #f59e0b, #3b82f6);
-      }
-      .header {
-        display: flex;
-        align-items: center;
-        gap: 16px;
-        margin-bottom: 24px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-      }
-      .brand-icon {
-        width: 54px;
-        height: 54px;
-        background: linear-gradient(135deg, #0f172a, #334155);
-        border: 2px solid #d97706;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        color: #f59e0b;
-        font-size: 26px;
-      }
-      .header h1 {
-        font-size: 1.75rem;
-        font-weight: 800;
-        color: #0f172a;
-        letter-spacing: -0.02em;
-      }
-      .header p {
-        font-size: 0.95rem;
-        color: var(--text-muted);
-        margin-top: 4px;
-      }
-      .info-box {
-        background: #f1f5f9;
-        border-radius: 10px;
-        padding: 12px 18px;
-        font-size: 0.9rem;
-        color: #334155;
-        margin-bottom: 28px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-      form {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-      }
-      .form-group {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-      }
-      .form-group.full-width {
-        grid-column: 1 / -1;
-      }
-      label {
-        font-size: 0.88rem;
-        font-weight: 600;
-        color: #1e293b;
-        display: flex;
-        justify-content: space-between;
-      }
-      label span.unit {
-        font-weight: 400;
-        color: #94a3b8;
-        font-size: 0.82rem;
-      }
-      input, select {
-        padding: 12px 16px;
-        border: 1.5px solid var(--border);
-        border-radius: 10px;
-        font-family: inherit;
-        font-size: 0.95rem;
-        background: #ffffff;
-        transition: all 0.2s ease;
-      }
-      input:focus, select:focus {
-        outline: none;
-        border-color: var(--accent);
-        box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
-      }
-      .btn-submit {
-        grid-column: 1 / -1;
-        padding: 15px;
-        border: none;
-        border-radius: 12px;
-        background: linear-gradient(135deg, #d97706, #b45309);
-        color: #ffffff;
-        font-size: 1.05rem;
-        font-weight: 700;
-        cursor: pointer;
-        transition: all 0.25s ease;
-        box-shadow: 0 10px 20px -5px rgba(217, 119, 6, 0.4);
-        margin-top: 10px;
-      }
-      .btn-submit:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 14px 24px -5px rgba(217, 119, 6, 0.5);
-      }
-      .btn-submit:active { transform: translateY(0); }
-      .btn-submit:disabled {
-        opacity: 0.7;
-        cursor: not-allowed;
-        transform: none;
-      }
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hệ Thống Thẩm Định Giá Bất Động Sản AI - EstateValuate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+   :root {
+    --primary: #1e293b;
+    --accent: #d97706;
+    --accent-hover: #b45309;
+    --bg: #f8fafc;
+    --card-bg: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border: #e2e8f0;
+    --radius: 16px;
+   }
+   * { box-sizing: border-box; margin: 0; padding: 0; }
+   body {
+    font-family: 'Outfit', system-ui, sans-serif;
+    background: linear-gradient(145deg, #0f172a 0%, #1e293b 40%, #0f172a 100%);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 16px;
+   }
+   .container {
+    width: 100%;
+    max-width: 860px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.45);
+    padding: 40px;
+    position: relative;
+    overflow: hidden;
+   }
+   .container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 6px;
+    background: linear-gradient(90deg, #d97706, #f59e0b, #3b82f6);
+   }
+   .header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+   }
+   .brand-icon {
+    width: 54px;
+    height: 54px;
+    background: linear-gradient(135deg, #0f172a, #334155);
+    border: 2px solid #d97706;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    color: #f59e0b;
+    font-size: 26px;
+   }
+   .header h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+   }
+   .header p {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+   }
+   .info-box {
+    background: #f1f5f9;
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-size: 0.9rem;
+    color: #334155;
+    margin-bottom: 28px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+   }
+   form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+   }
+   .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+   }
+   .form-group.full-width {
+    grid-column: 1 / -1;
+   }
+   label {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #1e293b;
+    display: flex;
+    justify-content: space-between;
+   }
+   label span.unit {
+    font-weight: 400;
+    color: #94a3b8;
+    font-size: 0.82rem;
+   }
+   input, select {
+    padding: 12px 16px;
+    border: 1.5px solid var(--border);
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 0.95rem;
+    background: #ffffff;
+    transition: all 0.2s ease;
+   }
+   input:focus, select:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.15);
+   }
+   .btn-submit {
+    grid-column: 1 / -1;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #ffffff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 20px -5px rgba(217, 119, 6, 0.4);
+    margin-top: 10px;
+   }
+   .btn-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px -5px rgba(217, 119, 6, 0.5);
+   }
+   .btn-submit:active { transform: translateY(0); }
+   .btn-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+   }
 
-      /* Result card */
-      #result {
-        display: none;
-        margin-top: 32px;
-        padding: 28px;
-        border-radius: 14px;
-        background: linear-gradient(135deg, #f8fafc, #f1f5f9);
-        border: 1.5px solid #cbd5e1;
-        animation: slideUp 0.4s ease;
-      }
-      @keyframes slideUp {
-        from { opacity: 0; transform: translateY(15px); }
-        to { opacity: 1; transform: translateY(0); }
-      }
-      #result.error {
-        background: #fef2f2;
-        border-color: #fecaca;
-        color: #991b1b;
-      }
-      .result-tag {
-        font-size: 0.82rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        font-weight: 700;
-        color: var(--accent);
-        margin-bottom: 6px;
-      }
-      .price-highlight {
-        font-size: 2.5rem;
-        font-weight: 800;
-        color: #0f172a;
-        margin: 4px 0 10px;
-        display: flex;
-        align-items: baseline;
-        gap: 8px;
-      }
-      .price-highlight span.currency {
-        font-size: 1.2rem;
-        color: var(--accent);
-        font-weight: 700;
-      }
-      .specs-badge-group {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-        margin-top: 16px;
-        padding-top: 16px;
-        border-top: 1px solid #e2e8f0;
-      }
-      .spec-pill {
-        background: #ffffff;
-        border: 1px solid #e2e8f0;
-        padding: 6px 12px;
-        border-radius: 8px;
-        font-size: 0.85rem;
-        color: #334155;
-        font-weight: 500;
-      }
+   /* Result card */
+   #result {
+    display: none;
+    margin-top: 32px;
+    padding: 28px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    border: 1.5px solid #cbd5e1;
+    animation: slideUp 0.4s ease;
+   }
+   @keyframes slideUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+   }
+   #result.error {
+    background: #fef2f2;
+    border-color: #fecaca;
+    color: #991b1b;
+   }
+   .result-tag {
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 6px;
+   }
+   .price-highlight {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 4px 0 10px;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+   }
+   .price-highlight span.currency {
+    font-size: 1.2rem;
+    color: var(--accent);
+    font-weight: 700;
+   }
+   .specs-badge-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e2e8f0;
+   }
+   .spec-pill {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    color: #334155;
+    font-weight: 500;
+   }
 
-      @media (max-width: 680px) {
-        body { padding: 12px; }
-        .container { padding: 24px 18px; border-radius: 12px; }
-        form { grid-template-columns: 1fr; }
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <div class="header">
-        <div class="brand-icon">🏠</div>
-        <div>
-          <h1>EstateValuate - Thẩm Định Giá Bất Động Sản AI</h1>
-          <p>Mô hình định giá nhà đất thông minh sử dụng thuật toán Random Forest & Gradient Boosting</p>
-        </div>
-      </div>
+   @media (max-width: 680px) {
+    body { padding: 12px; }
+    .container { padding: 24px 18px; border-radius: 12px; }
+    form { grid-template-columns: 1fr; }
+   }
+  </style>
+ </head>
+ <body>
+  <div class="container">
+   <div class="header">
+    <div class="brand-icon"></div>
+    <div>
+     <h1>EstateValuate - Thẩm Định Giá Bất Động Sản AI</h1>
+     <p>Mô hình định giá nhà đất thông minh sử dụng thuật toán Random Forest & Gradient Boosting</p>
+    </div>
+   </div>
 
-      <div class="info-box">
-        💡 <strong>Quy ước tham số:</strong> Diện tích tính bằng mét vuông (m²), bề rộng ngõ vào tính bằng mét (m). Đơn vị giá dự toán là <strong>tỷ VNĐ</strong>.
-      </div>
+   <div class="info-box">
+     <strong>Quy ước tham số:</strong> Diện tích tính bằng mét vuông (m²), bề rộng ngõ vào tính bằng mét (m). Đơn vị giá dự toán là <strong>tỷ VNĐ</strong>.
+   </div>
 
-      <form id="prediction-form">
-        <div class="form-group">
-          <label>Diện tích mặt sàn đất (Area) <span class="unit">m²</span></label>
-          <input name="Area" type="number" min="5" max="5000" step="0.1" placeholder="Ví dụ: 85.5" required>
-        </div>
-
-        <div class="form-group">
-          <label>Bề rộng đường/ngõ vào (Access Road) <span class="unit">mét</span></label>
-          <input name="Access Road" type="number" min="0.5" max="60" step="0.1" placeholder="Ví dụ: 4.5" required>
-        </div>
-
-        <div class="form-group">
-          <label>Số tầng (Floors) <span class="unit">Tầng</span></label>
-          <input name="Floors" type="number" min="1" max="30" step="1" value="3" required>
-        </div>
-
-        <div class="form-group">
-          <label>Số phòng ngủ (Bedrooms) <span class="unit">Phòng</span></label>
-          <input name="Bedrooms" type="number" min="1" max="25" step="1" value="3" required>
-        </div>
-
-        <div class="form-group">
-          <label>Số phòng tắm/vệ sinh (Bathrooms) <span class="unit">Phòng</span></label>
-          <input name="Bathrooms" type="number" min="1" max="25" step="1" value="2" required>
-        </div>
-
-        <div class="form-group">
-          <label>Tình trạng nội thất <span class="unit">Hoàn thiện</span></label>
-          <select name="Furniture state" required>
-            <option value="Full">Full nội thất cao cấp (Đầy đủ)</option>
-            <option value="Basic">Nội thất cơ bản (Basic)</option>
-          </select>
-        </div>
-
-        <div class="form-group full-width">
-          <label>Thuật toán định giá <span class="unit">Machine Learning Model</span></label>
-          <select name="model">
-            <option value="random_forest_regressor">Random Forest Regressor (Mô hình khuyến nghị - Tối ưu nhất)</option>
-            <option value="gradient_boosting_regressor">Gradient Boosting Regressor</option>
-            <option value="decision_tree_regressor">Decision Tree Regressor</option>
-            <option value="ridge_regression">Ridge Regression (L2 Regularized)</option>
-            <option value="linear_regression">Linear Regression (Tuyến tính)</option>
-          </select>
-        </div>
-
-        <button type="submit" class="btn-submit">Ước Tính Giá Trị Bất Động Sản</button>
-      </form>
-
-      <section id="result" aria-live="polite"></section>
+   <form id="prediction-form">
+    <div class="form-group">
+     <label>Diện tích mặt sàn đất (Area) <span class="unit">m²</span></label>
+     <input name="Area" type="number" min="5" max="5000" step="0.1" placeholder="Ví dụ: 85.5" required>
     </div>
 
-    <script>
-      const form = document.querySelector("#prediction-form");
-      const result = document.querySelector("#result");
-      const submitBtn = form.querySelector("button[type='submit']");
-      const escapeHtml = (val) => String(val ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+    <div class="form-group">
+     <label>Bề rộng đường/ngõ vào (Access Road) <span class="unit">mét</span></label>
+     <input name="Access Road" type="number" min="0.5" max="60" step="0.1" placeholder="Ví dụ: 4.5" required>
+    </div>
 
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        submitBtn.disabled = true;
-        submitBtn.textContent = "Đang chạy mô hình định giá...";
+    <div class="form-group">
+     <label>Số tầng (Floors) <span class="unit">Tầng</span></label>
+     <input name="Floors" type="number" min="1" max="30" step="1" value="3" required>
+    </div>
 
-        const payload = {
-          "Area": Number(form["Area"].value),
-          "Access Road": Number(form["Access Road"].value),
-          "Floors": Number(form["Floors"].value),
-          "Bedrooms": Number(form["Bedrooms"].value),
-          "Bathrooms": Number(form["Bathrooms"].value),
-          "Furniture state": form["Furniture state"].value,
-          "model": form["model"].value
-        };
+    <div class="form-group">
+     <label>Số phòng ngủ (Bedrooms) <span class="unit">Phòng</span></label>
+     <input name="Bedrooms" type="number" min="1" max="25" step="1" value="3" required>
+    </div>
 
-        try {
-          const res = await fetch("/house-price/v1/predict", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-          });
+    <div class="form-group">
+     <label>Số phòng tắm/vệ sinh (Bathrooms) <span class="unit">Phòng</span></label>
+     <input name="Bathrooms" type="number" min="1" max="25" step="1" value="2" required>
+    </div>
 
-          const data = await res.json();
-          result.style.display = "block";
+    <div class="form-group">
+     <label>Tình trạng nội thất <span class="unit">Hoàn thiện</span></label>
+     <select name="Furniture state" required>
+      <option value="Full">Full nội thất cao cấp (Đầy đủ)</option>
+      <option value="Basic">Nội thất cơ bản (Basic)</option>
+     </select>
+    </div>
 
-          if (!res.ok) {
-            result.className = "error";
-            result.innerHTML = `
-              <div style="font-size:1.2rem; font-weight:700; margin-bottom:6px;">Lỗi định giá</div>
-              <p>${escapeHtml(data.message || "Không thể ước tính giá bất động sản.")}</p>
-            `;
-            return;
-          }
+    <div class="form-group full-width">
+     <label>Thuật toán định giá <span class="unit">Machine Learning Model</span></label>
+     <select name="model">
+      <option value="random_forest_regressor">Random Forest Regressor (Mô hình khuyến nghị - Tối ưu nhất)</option>
+      <option value="gradient_boosting_regressor">Gradient Boosting Regressor</option>
+      <option value="decision_tree_regressor">Decision Tree Regressor</option>
+      <option value="ridge_regression">Ridge Regression (L2 Regularized)</option>
+      <option value="linear_regression">Linear Regression (Tuyến tính)</option>
+     </select>
+    </div>
 
-          result.className = "";
-          result.innerHTML = `
-            <div class="result-tag">KẾT QUẢ ĐỊNH GIÁ THỊ TRƯỜNG ƯỚC TÍNH</div>
-            <div class="price-highlight">
-              ${data.predicted_price_display || (Number(data.predicted_price).toFixed(2) + ' tỷ VNĐ')}
-            </div>
-            <p style="color: #64748b; font-size: 0.9rem;">${escapeHtml(data.message)}</p>
-            <div class="specs-badge-group">
-              <span class="spec-pill">📐 ${payload.Area} m²</span>
-              <span class="spec-pill">🛣 Đường vào: ${payload["Access Road"]} m</span>
-              <span class="spec-pill">🏢 ${payload.Floors} tầng</span>
-              <span class="spec-pill">🛏 ${payload.Bedrooms} PN</span>
-              <span class="spec-pill">🚿 ${payload.Bathrooms} WC</span>
-              <span class="spec-pill">🛋 Nội thất: ${payload["Furniture state"]}</span>
-              <span class="spec-pill">⚙ Model: ${escapeHtml(data.model_label || data.model)}</span>
-            </div>
-          `;
-          result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        } catch (err) {
-          result.style.display = "block";
-          result.className = "error";
-          result.innerHTML = `
-            <div style="font-size:1.2rem; font-weight:700; margin-bottom:6px;">Lỗi kết nối máy chủ</div>
-            <p>Không thể kết nối đến REST API House Price. Vui lòng kiểm tra server Flask.</p>
-          `;
-        } finally {
-          submitBtn.disabled = false;
-          submitBtn.textContent = "Ước Tính Giá Trị Bất Động Sản";
-        }
-      });
-    </script>
-  </body>
+    <button type="submit" class="btn-submit">Ước Tính Giá Trị Bất Động Sản</button>
+   </form>
+
+   <section id="result" aria-live="polite"></section>
+  </div>
+
+  <script>
+   const form = document.querySelector("#prediction-form");
+   const result = document.querySelector("#result");
+   const submitBtn = form.querySelector("button[type='submit']");
+   const escapeHtml = (val) => String(val ?? "").replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;");
+
+   form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Đang chạy mô hình định giá...";
+
+    const payload = {
+     "Area": Number(form["Area"].value),
+     "Access Road": Number(form["Access Road"].value),
+     "Floors": Number(form["Floors"].value),
+     "Bedrooms": Number(form["Bedrooms"].value),
+     "Bathrooms": Number(form["Bathrooms"].value),
+     "Furniture state": form["Furniture state"].value,
+     "model": form["model"].value
+    };
+
+    try {
+     const res = await fetch("/house-price/v1/predict", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+     });
+
+     const data = await res.json();
+     result.style.display = "block";
+
+     if (!res.ok) {
+      result.className = "error";
+      result.innerHTML = `
+       <div style="font-size:1.2rem; font-weight:700; margin-bottom:6px;">Lỗi định giá</div>
+       <p>${escapeHtml(data.message || "Không thể ước tính giá bất động sản.")}</p>
+      `;
+      return;
+     }
+
+     result.className = "";
+     result.innerHTML = `
+      <div class="result-tag">KẾT QUẢ ĐỊNH GIÁ THỊ TRƯỜNG ƯỚC TÍNH</div>
+      <div class="price-highlight">
+       ${data.predicted_price_display || (Number(data.predicted_price).toFixed(2) + ' tỷ VNĐ')}
+      </div>
+      <p style="color: #64748b; font-size: 0.9rem;">${escapeHtml(data.message)}</p>
+      <div class="specs-badge-group">
+       <span class="spec-pill"> ${payload.Area} m²</span>
+       <span class="spec-pill"> Đường vào: ${payload["Access Road"]} m</span>
+       <span class="spec-pill"> ${payload.Floors} tầng</span>
+       <span class="spec-pill"> ${payload.Bedrooms} PN</span>
+       <span class="spec-pill"> ${payload.Bathrooms} WC</span>
+       <span class="spec-pill"> Nội thất: ${payload["Furniture state"]}</span>
+       <span class="spec-pill"> Model: ${escapeHtml(data.model_label || data.model)}</span>
+      </div>
+     `;
+     result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    } catch (err) {
+     result.style.display = "block";
+     result.className = "error";
+     result.innerHTML = `
+      <div style="font-size:1.2rem; font-weight:700; margin-bottom:6px;">Lỗi kết nối máy chủ</div>
+      <p>Không thể kết nối đến REST API House Price. Vui lòng kiểm tra server Flask.</p>
+     `;
+    } finally {
+     submitBtn.disabled = false;
+     submitBtn.textContent = "Ước Tính Giá Trị Bất Động Sản";
+    }
+   });
+  </script>
+ </body>
 </html>
